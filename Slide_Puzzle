@@ -1,0 +1,49 @@
+import pygame, sys, random
+from pygame.locals import *
+
+#Create constants
+broadwidth = 4    #Number of columns in boards
+broadheight = 4   #Number of rows in board
+tilesize = 80
+windowwidth = 640
+windowhight = 480
+FPS = 30
+Blank = None
+
+#                 R    G    B
+Black =         (  0,   0,   0)
+White =         (255, 255, 255)
+Brightblue =    (  0,  50, 255)
+DarkTurqouise = (  3,  54,  73)
+Green =         (  0, 204,   0)
+
+BGColor = DarkTurqouise
+TileColor = Green
+TextColor = White
+BorderColor = Brightblue
+FontSize = 20
+
+ButtonColor = White
+ButtontextColor = Black
+MessageColor = White
+
+Xmargin = int((windowwidth - (tilesize * broadwidth + (broadwidth - 1))) / 2)
+Ymargin = int((windowheight - (tilesize * broadheight + (broadheight - 1))) / 2)
+
+Up =    'Up'
+Down =  'Down'
+Left =  'Left'
+Right = 'Right'
+
+def main():
+    global FPSClock, DisplaySurf, BasicFont, Reset_Surf, Reset_Rect, New_Surf, New_Rect, Solve_Surf, Solve_Rect
+    pygame.init()
+    FPSClock = pygame.time.Clock()
+    DisplaySurf = pygame.display.set_model((windowwidth, windowheight))
+    pygame.display.set_caption('Slide Puzzle')
+    BasicFont = pygame.font.Font('Freesansbold.ttf', FontSize)
+
+    #Store the option buttons and their rectangles in options
+    Reset_surf, Reset_Rect = makeText('Reset', TextColor, TileColor, windowwidth -120, windowheight - 90)
+    New_Surf, New_Rect     = makeText('New Game', TextColor, TileColor, windowwidth -120, windowheight - 60)
+    Solve_Surf, Solve_Rect = makeText('Solve', TextColor, TileColor, windowwidth -120, windowheight - 30)
